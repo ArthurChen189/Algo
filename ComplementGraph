@@ -1,0 +1,23 @@
+import java.util.*;
+public class ComplementGraph {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Map<Integer, LinkedList<Integer>> graph = new HashMap<>();
+		int node = sc.nextInt();
+		int edge = sc.nextInt();
+		for(int i = 1; i <= node; i++) {
+			LinkedList<Integer> temp = new LinkedList<>();
+			graph.put(i, temp);
+			for(int j = 1; j<= node ; j++) {
+				if(i != j) temp.add(j);
+			}
+		}
+		for(int k = 1; k<node ; k++) {
+			int temp1 = sc.nextInt();
+			int temp2 = sc.nextInt();
+			graph.get(temp1).remove(temp2);
+			graph.get(temp2).remove(temp1);
+		}
+	
+	}
+}
