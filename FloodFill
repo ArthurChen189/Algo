@@ -1,0 +1,48 @@
+import java.util.*;
+public class FloodFill {
+	static int count = 0;
+	static char[][] grid;
+	static int R, C;
+	
+	public static void floodfill(int row, int column) {
+		//will count how many black can reach from grid[row][column]
+		
+		//check grid[row][column]
+		if(row < 0 || column < 0 || row >= R || column >= C) return;
+		if(grid[row][column] == '#' || grid[row][column] == 'D') return;
+		count++;
+		grid[row][column] = 'D';
+		
+		floodfill(row+1, column);
+		floodfill(row-1,column);
+		floodfill(row,column+1);
+		floodfill(row,column-1);
+	}
+	
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+		C = sc.nextInt();
+		R = sc.nextInt();
+		if(C==0) break;
+		 grid = new char[R][C];
+		String tt = sc.nextLine();
+		int aco1 = 0;
+		int aco2 = 0;
+		for(int i = 0; i<R; i++) {
+			String temp = sc.nextLine();
+			for(int j =0; j<C;j++) {
+				if(temp.charAt(j) == '@') {
+					aco1 = i;
+				    aco2 = j;
+				}
+				grid[i][j] = temp.charAt(j);
+			}
+		}
+		floodfill(aco1, aco2);
+		System.out.println(count);
+		count = 0;
+		}
+	}
+}
