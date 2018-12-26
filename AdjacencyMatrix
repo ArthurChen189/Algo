@@ -1,0 +1,56 @@
+package graphTheory;
+import java.util.*;
+//adjacency Matrix
+public class GraphEx {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int node  = sc.nextInt();
+		int edge = sc.nextInt();
+		int[][] array = new int[node][node];
+		int counter = 0;
+		while(counter < edge) {
+			int node1 = sc.nextInt();
+			int node2 = sc.nextInt();
+			array[node1-1][node2-1] = 1; 
+			array[node2-1][node1-1] = 1;
+			counter++;
+			}
+		//能否一笔画这个图(保证出发点和终点在一个点上)
+		int k  = sc.nextInt();
+		boolean result = true;
+
+		for(int i = 0; i < node; i ++) {
+			int temp = 0;
+			int counter2 = 0;
+			while(counter2 < node) {
+				temp += array[i][counter2];
+				counter2++;
+			}
+			if(temp%2 != 0) {
+				result = false;
+			}
+			}
+		if(result) {
+			System.out.println("能一笔画");
+		}else {
+			System.out.println("不能一笔画");
+		}
+	}
+		
+		
+	//now the graph was saved into two-d array, next, do the computation to compute the degree of node k
+	/*
+		int k  = sc.nextInt();
+		int result = 0;
+		for(int i = 0; i < node; i ++) {
+			if(array[k-1][i] == 1) {
+				result = result + array[k-1][i];
+			}
+		}
+		System.out.println("The degree of node " + k + " is " + result);
+		}
+	*/
+		
+	
+}
+
