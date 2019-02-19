@@ -1,0 +1,59 @@
+import java.util.*;
+public class zooDoors {
+    static int numberOfDoors;
+    static int rows;
+    static Map<Integer,ArrayList<Integer>> map = new HashMap<>();
+    static Queue<Integer> queue;
+    static boolean[] visited;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        numberOfDoors = sc.nextInt();
+        rows = sc.nextInt();
+
+        //reading data
+        for (int i = 1; i <= numberOfDoors; i++) {
+            ArrayList<Integer> tempArrayList = new ArrayList<>();
+            int first = sc.nextInt();
+
+            for (int j = 0; j < rows ; j++) {
+                tempArrayList.add(sc.nextInt());
+            }
+             map.put(first, tempArrayList);
+
+        }
+
+
+
+
+
+
+
+
+    }
+
+    public static boolean searching(int door,int target){
+        queue = new LinkedList<>();
+        int arrayLength = map.get(door).size();
+        queue.add(door);
+
+        //reading data from arraylist to queue
+        for (int i = 0; i < arrayLength; i++) {
+            queue.add(map.get(door).get(i));
+        }
+
+
+        while(!queue.isEmpty()){
+            int temp = queue.poll();
+            visited[temp] = true;
+
+            if (map.containsKey(temp)){
+
+            }
+
+        }
+        return false;
+    }
+
+
+}
