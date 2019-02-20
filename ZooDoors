@@ -5,6 +5,7 @@ public class zooDoors {
     static Map<Integer,ArrayList<Integer>> map = new HashMap<>();
     static Queue<Integer> queue;
     static boolean[] visited;
+    static Set<Integer> key = map.keySet();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -23,33 +24,29 @@ public class zooDoors {
 
         }
 
-
-
-
-
-
+        while(true){
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            if (x == 0) return;
+            searching(x,y);
+        }
 
 
     }
 
     public static boolean searching(int door,int target){
         queue = new LinkedList<>();
-        int arrayLength = map.get(door).size();
         queue.add(door);
-
-        //reading data from arraylist to queue
-        for (int i = 0; i < arrayLength; i++) {
-            queue.add(map.get(door).get(i));
-        }
-
 
         while(!queue.isEmpty()){
             int temp = queue.poll();
-            visited[temp] = true;
-
-            if (map.containsKey(temp)){
-
+            if (temp == target) return true;
+            if (key.contains(temp)){
+                for (int tempo : map.get(temp)) {
+                    queue.add(tempo);
+                }
             }
+            visited[temp] = true;
 
         }
         return false;
