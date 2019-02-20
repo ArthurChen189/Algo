@@ -1,0 +1,22 @@
+import java.util.*;
+public class GreedyTest{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        int es = 0;
+        int ves = 0;
+        int oves = 0;
+        int love = 0;
+        for(int k=str.length()-1; k>=0; k--){
+            char ch = str.charAt(k);
+            if(ch!='l'&&ch!='o'&&ch!='v'&&ch!='e') continue;
+            if(ch=='e'){ es = es + 1; continue;}
+            if(ch=='v' && es > 0 ){ ves = ves+1; es=es-1; continue;}
+            if(ch=='o' && ves > 0 ){ oves++; ves--; continue; }
+            if( ch=='l' && oves > 0){ love++; oves--; }
+        }
+        System.out.println(love);
+    }
+
+}
+
