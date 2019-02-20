@@ -1,0 +1,73 @@
+import java.util.*;
+public class Test2 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        sc.nextLine();
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        for(int k=0; k<m; k++){
+            String st = sc.nextLine();
+            String[] re = st.split(" ");
+            ArrayList<String> temp = new ArrayList<>();
+            map.put(re[0], temp);
+            for(int x=1; x<re.length; x=x+1){
+                map.get(re[0]).add( re[x]);
+            }
+        }  //finish the input
+
+        while(true) {
+            String query = sc.nextLine();
+            if (query.equals("0 0")) break;
+            String[] sea = query.split(" ");
+            Queue<String> qu = new LinkedList<>();
+            boolean[] vi = new boolean[n + 1];
+            qu.add(sea[0]);
+            int flag = 0;
+            while (!qu.isEmpty()) {
+                String temp = qu.poll();
+                ArrayList<String> kid = map.get(temp);
+                if (kid == null) continue;
+                for (String sk : kid) {
+                    int te = Integer.parseInt(sk);
+                    if (!vi[te]) {
+                        vi[te] = true;
+                        qu.add(sk);
+                    }
+                    if (sk.equals(sea[1])) {
+                        System.out.println();
+                        while (true) {
+                            String query = sc.nextLine();
+                            if (query.equals("0 0")) break;
+                            String[] sea = query.split(" ");
+                            Queue<String> qu = new LinkedList<>();
+                            boolean[] vi = new boolean[n + 1];
+                            qu.add(sea[0]);
+                            int flag = 0;
+                            while (!qu.isEmpty()) {
+                                String temp = qu.poll();
+                                ArrayList<String> kid = map.get(temp);
+                                if (kid == null) continue;
+                                for (String sk : kid) {
+                                    int te = Integer.parseInt(sk);
+                                    if (!vi[te]) {
+                                        vi[te] = true;
+                                        qu.add(sk);
+                                    }
+                                    if (sk.equals(sea[1])) {
+                                        System.out.println("YES");
+                                        flag = 1;
+                                        break;
+                                    }
+
+                                }
+                                if (flag == 1) break;
+                            }
+                            if (flag == 0) System.out.println("NO");
+                        }
+
+
+                    }
+                }
+            }
+        }
