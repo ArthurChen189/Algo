@@ -1,0 +1,6 @@
+public class TestMath {
+    public static void main(String[] args) {
+        float x = 1.30000f;
+        System.out.printf("%.5f", x);
+    }
+}
