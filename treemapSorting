@@ -1,0 +1,35 @@
+import java.util.*;
+public class test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        TreeMap<Integer, ArrayList<Integer>> treemap = new TreeMap<>();
+        int N = sc.nextInt();
+
+        for (int i = 0; i < N; i++) {
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            if(treemap.containsKey(x)){
+                treemap.get(x).add(y);
+            }else{
+                treemap.put(x,new ArrayList<>());
+                treemap.get(x).add(y);
+            }
+
+
+        }
+
+        Set<Integer> set = treemap.keySet();
+
+        for (int tempo : set){
+            ArrayList<Integer> arraylist = treemap.get(tempo);
+            Collections.sort(arraylist);
+        }
+
+        for (int index : set){
+            for (int index2 : treemap.get(index)) {
+                System.out.println(index + " " + index2);
+            }
+        }
+
+    }
+}
